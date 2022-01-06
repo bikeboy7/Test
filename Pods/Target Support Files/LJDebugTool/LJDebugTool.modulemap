@@ -1,0 +1,6 @@
+framework module LJDebugTool {
+  umbrella header "LJDebugTool-umbrella.h"
+
+  export *
+  module * { export * }
+}

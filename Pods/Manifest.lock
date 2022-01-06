@@ -1,0 +1,16 @@
+PODS:
+  - LJDebugTool (1.0.6)
+
+DEPENDENCIES:
+  - LJDebugTool (~> 1.0.6)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs:
+    - LJDebugTool
+
+SPEC CHECKSUMS:
+  LJDebugTool: f76d76502e9f1c6d54698c3b146d3b485cbf197b
+
+PODFILE CHECKSUM: 234822dfbd63adb4cc0343f0f4f617dcef71c4f2
+
+COCOAPODS: 1.10.1
