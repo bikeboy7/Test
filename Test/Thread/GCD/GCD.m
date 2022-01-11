@@ -136,8 +136,6 @@
     // 2 3 4 在不同的线程并发执行
 }
 
-
-
 + (void)test05 {
     // 创建队列组
     dispatch_group_t group = dispatch_group_create();

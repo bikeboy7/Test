@@ -36,8 +36,9 @@
 		4BC37EAD273289E900C89439 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC37EAC273289E900C89439 /* BaseViewController.swift */; };
 		4BC37EB227328A6800C89439 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC37EB127328A6800C89439 /* AViewController.swift */; };
 		4BC37EB727328B2C00C89439 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC37EB627328B2C00C89439 /* BViewController.swift */; };
-		4BC7AF89276058B2002667DF /* DoubleScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7AF88276058B2002667DF /* DoubleScrollViewDemoViewController.swift */; };
 		4BD733D226E0B38600B287FC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD733D126E0B38600B287FC /* Message.m */; };
+		4BEB82EE278C53BA003EADA8 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB82ED278C53BA003EADA8 /* Thread.m */; };
+		4BEB82F2278D0F2B003EADA8 /* OperationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB82F1278D0F2B003EADA8 /* OperationTest.m */; };
 		4BF4380F26DC727400A8CA15 /* BlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4380E26DC727400A8CA15 /* BlockTest.m */; };
 		4BF4383626DCB43D00A8CA15 /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4383526DCB43D00A8CA15 /* Dog.m */; };
 		4BF4386026DDE12D00A8CA15 /* TaggedPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4385F26DDE12D00A8CA15 /* TaggedPointer.m */; };
@@ -121,9 +122,12 @@
 		4BC37EAC273289E900C89439 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4BC37EB127328A6800C89439 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
 		4BC37EB627328B2C00C89439 /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
-		4BC7AF88276058B2002667DF /* DoubleScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		4BD733D026E0B38600B287FC /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		4BD733D126E0B38600B287FC /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		4BEB82EC278C53BA003EADA8 /* Thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		4BEB82ED278C53BA003EADA8 /* Thread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
+		4BEB82F0278D0F2B003EADA8 /* OperationTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperationTest.h; sourceTree = "<group>"; };
+		4BEB82F1278D0F2B003EADA8 /* OperationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperationTest.m; sourceTree = "<group>"; };
 		4BF4380C26DC727400A8CA15 /* Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		4BF4380D26DC727400A8CA15 /* BlockTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTest.h; sourceTree = "<group>"; };
 		4BF4380E26DC727400A8CA15 /* BlockTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockTest.m; sourceTree = "<group>"; };
@@ -229,10 +233,8 @@
 		4BB5173026C3707600EAA03A /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				4B98CFFA278708CE002609F3 /* Locks */,
-				4BC7AF872760588A002667DF /* DoubleScrollViewDemo */,
+				4BEB82EB278C5380003EADA8 /* Thread */,
 				4BC37E9B273277B200C89439 /* SwiftFunction */,
-				4BBB26D926E9A5A100B51B3F /* GCD */,
 				4BB8FB1E26E5A898007707D9 /* RunLoop */,
 				4BF4387626DE327600A8CA15 /* Runtime */,
 				4BB5173126C3707600EAA03A /* AppDelegate.swift */,
@@ -302,12 +304,33 @@
 			path = SwiftFunction;
 			sourceTree = "<group>";
 		};
-		4BC7AF872760588A002667DF /* DoubleScrollViewDemo */ = {
+		4BEB82EA278C536D003EADA8 /* NSThread */ = {
 			isa = PBXGroup;
 			children = (
-				4BC7AF88276058B2002667DF /* DoubleScrollViewDemoViewController.swift */,
+				4BEB82EC278C53BA003EADA8 /* Thread.h */,
+				4BEB82ED278C53BA003EADA8 /* Thread.m */,
 			);
-			path = DoubleScrollViewDemo;
+			path = NSThread;
+			sourceTree = "<group>";
+		};
+		4BEB82EB278C5380003EADA8 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				4BEB82EF278D0EF5003EADA8 /* NSOperation */,
+				4BEB82EA278C536D003EADA8 /* NSThread */,
+				4B98CFFA278708CE002609F3 /* Locks */,
+				4BBB26D926E9A5A100B51B3F /* GCD */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		4BEB82EF278D0EF5003EADA8 /* NSOperation */ = {
+			isa = PBXGroup;
+			children = (
+				4BEB82F0278D0F2B003EADA8 /* OperationTest.h */,
+				4BEB82F1278D0F2B003EADA8 /* OperationTest.m */,
+			);
+			path = NSOperation;
 			sourceTree = "<group>";
 		};
 		4BF4386A26DDE1BC00A8CA15 /* ProxyTimer */ = {
@@ -551,8 +574,10 @@
 				4BF4387926DE329500A8CA15 /* Runtime.m in Sources */,
 				4BF4386026DDE12D00A8CA15 /* TaggedPointer.m in Sources */,
 				4B98D01C278708CE002609F3 /* NSLockDemo.m in Sources */,
+				4BEB82F2278D0F2B003EADA8 /* OperationTest.m in Sources */,
 				4BF4380F26DC727400A8CA15 /* BlockTest.m in Sources */,
 				4BC37EB227328A6800C89439 /* AViewController.swift in Sources */,
+				4BEB82EE278C53BA003EADA8 /* Thread.m in Sources */,
 				4B98D016278708CE002609F3 /* MutexDemo3.m in Sources */,
 				4BC37EAD273289E900C89439 /* BaseViewController.swift in Sources */,
 				4B98D01B278708CE002609F3 /* NSConditionLockDemo.m in Sources */,
@@ -561,7 +586,6 @@
 				4B98D020278708CE002609F3 /* MutexDemo2.m in Sources */,
 				4BC37EB727328B2C00C89439 /* BViewController.swift in Sources */,
 				4B98D01A278708CE002609F3 /* NSConditionDemo.m in Sources */,
-				4BC7AF89276058B2002667DF /* DoubleScrollViewDemoViewController.swift in Sources */,
 				4BB8FB4526E5CBC6007707D9 /* RunLoopTestViewController.m in Sources */,
 				4B98D018278708CE002609F3 /* MutexDemo.m in Sources */,
 				4BF4386F26DDE24B00A8CA15 /* TimerProxy.m in Sources */,

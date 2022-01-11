@@ -23,7 +23,10 @@ class ViewController: UIViewController {
         
 //        labelMore()
         
-        GCD.test()
+//        GCD.test()
+//        Thread.test()
+//        Thread.test()
+        OperationTest.test()
         
     }
     
