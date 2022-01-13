@@ -25,8 +25,8 @@ class ViewController: UIViewController {
         
 //        GCD.test()
 //        Thread.test()
-//        Thread.test()
-        OperationTest.test()
+        Thread.test()
+//        OperationTest.test()
         
     }
     

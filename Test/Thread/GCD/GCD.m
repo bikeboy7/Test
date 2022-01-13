@@ -16,6 +16,14 @@
 
 // gcd api dispatch_sync（同步）和dispatch_async（异步）用来控制是否要开启新的线程
 /**
+ 任务的执行方式：
+ 
+ sync （同步）：同步添加任务到指定的队列中，在添加的任务执行结束之前，会一直等待，知道队列里面的任务完成之后再继续执行，即会阻塞线程。只能在当前线程中执行任务（是当前线程，不一定是主线程），不具备开启新线程的能力
+ 
+ async （异步）：线程会立即返回，无需等待就会继续执行下面的任务，不阻塞当前线程。可以在新的线程中执行任务，具备开启新线程的能力（并不一定开启新线程）。如果不是添加到主队列上，异步会在子线程中执行任务
+ */
+
+/**
  队列的类型，决定了任务的执行方式（并发、串行）
  1.并发队列
  2.串行队列
@@ -65,7 +73,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"执行任务1");
         dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
-        // dispatch_sync会立马执行任务2，由于添加的任务是在另外一个队列，即使是串行的，但由于这个队列只有任务2（任务2前面没有任何任务阻塞）所以不会死锁。
+        // dispatch_sync会立马执行任务2（阻塞当前线程，任务2完成之前，不能继续执行任务3、4），由于添加的任务是在另外一个队列，即使是串行的，但由于这个队列只有任务2（任务2前面没有任何任务阻塞）所以不会死锁。
         dispatch_sync(queue, ^{
             [self doTask:2];
             // 由于是同步执行+串行队列，所以不会有新的线程。实际上凡是dispatch_sync都不会有新的线程
@@ -175,6 +183,34 @@ NSString *target;
         });
     }
 }
+
+
+/// dispatch_barrier_async 栅（zha）栏函数
+/// 实现高效率的数据库访问和文件访问，避免数据竞争（多读单写）
++ (void)test08 {
+    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        [self doTask:0];
+    });
+    dispatch_async(queue, ^{
+        [self doTask:1];
+    });
+    
+    dispatch_barrier_async(queue, ^{
+        [self doTask:2];
+    });
+    
+    dispatch_async(queue, ^{
+        [self doTask:3];
+    });
+    dispatch_async(queue, ^{
+        [self doTask:4];
+    });
+    // （0、1并发）2、（3、4并发）
+    // 按照任务添加进去的顺序，先并发执行完dispatch_barrier_async之前的所有任务，然后执行任务2，任务2完之后才执行3、4
+    
+}
+
 
 + (void)doTask:(int)task {
     for (int i = 0; i < 10; i ++) {
