@@ -10,7 +10,7 @@
 @implementation GCD
 
 + (void)test {
-    [self test07];
+    [self test09];
 }
 
 
@@ -35,7 +35,7 @@
 /**
  1、dispatch_sync 都是没有开启新线程，串行执行任务
  2、dispatch_async + 并发队列 开启新线程并发执行
- 3、dispatch_async + 手动创建的串行队列 会开启新线程串行执行任务
+ 3、dispatch_async + 一个新的串行队列（与当前不一样的队列） 会开启新线程串行执行任务
  2、dispatch_async + 并发队列 开启新线程并发执行
 
  */
@@ -127,6 +127,7 @@
 
 // 异步+并发队列
 + (void)test04_2 {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"执行任务1");
         dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
@@ -142,6 +143,30 @@
         [self doTask:4];
     });
     // 2 3 4 在不同的线程并发执行
+}
+
+// 异步+串行队列
++ (void)test04_3 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"执行任务1");
+        dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
+
+        dispatch_async(queue, ^{ // 异步执行
+            [self doTask:2]; // 会开启新线程
+        });
+        
+        [self doTask:3];
+        
+        dispatch_sync(queue, ^{ // 同步执行
+            // 队列前面有任务2，根据队列先进先出原则，一定会先执行完2才会执行4
+            // 因为是同步任务，所以会阻塞线程，不会开启新的线程，只有执行完任务4才能继续任务5
+            [self doTask:4];
+        });
+        [self doTask:5];
+    });
+    
+    // 1 3 2 4 5 (3 2 并发执行，因为2是会在新的线程中执行，不会阻塞3的线程)
+    
 }
 
 + (void)test05 {
@@ -186,6 +211,7 @@ NSString *target;
 
 
 /// dispatch_barrier_async 栅（zha）栏函数
+/// dispatch_barrier_sync （同步）
 /// 实现高效率的数据库访问和文件访问，避免数据竞争（多读单写）
 + (void)test08 {
     dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
@@ -208,12 +234,29 @@ NSString *target;
     });
     // （0、1并发）2、（3、4并发）
     // 按照任务添加进去的顺序，先并发执行完dispatch_barrier_async之前的所有任务，然后执行任务2，任务2完之后才执行3、4
-    
+}
+
+/// dispatch_group_t  线程组
+/// dispatch_group_async
+/// dispatch_group_notify
++ (void)test09 {
+    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+    for (int i = 0; i < 5; i ++) {
+        dispatch_group_async(group, queue, ^{
+            [self doTask:i];
+        });
+    }
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"所有任务完成，刷新界面");
+    });
 }
 
 
+
+
 + (void)doTask:(int)task {
-    for (int i = 0; i < 10; i ++) {
+    for (int i = 0; i < 5; i ++) {
         [NSThread sleepForTimeInterval:0.1];
         NSLog(@"任务%d--%d %@", task, i, NSThread.currentThread);
     }
