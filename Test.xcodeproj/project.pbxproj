@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B686F022793DC6400D878C8 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B686F012793DC6400D878C8 /* Memory.m */; };
+		4B686F0627941F1F00D878C8 /* MemoryCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B686F0527941F1F00D878C8 /* MemoryCopy.m */; };
 		4B98D015278708CE002609F3 /* MJBaseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B98CFFB278708CE002609F3 /* MJBaseDemo.m */; };
 		4B98D016278708CE002609F3 /* MutexDemo3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B98CFFC278708CE002609F3 /* MutexDemo3.m */; };
 		4B98D017278708CE002609F3 /* SemaphoreDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B98CFFD278708CE002609F3 /* SemaphoreDemo.m */; };
@@ -69,6 +71,10 @@
 
 /* Begin PBXFileReference section */
 		44CD97BFF34193DFDDA3522D /* Pods_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B686F002793DC6400D878C8 /* Memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		4B686F012793DC6400D878C8 /* Memory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
+		4B686F0427941F1F00D878C8 /* MemoryCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryCopy.h; sourceTree = "<group>"; };
+		4B686F0527941F1F00D878C8 /* MemoryCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryCopy.m; sourceTree = "<group>"; };
 		4B98CFFB278708CE002609F3 /* MJBaseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJBaseDemo.m; sourceTree = "<group>"; };
 		4B98CFFC278708CE002609F3 /* MutexDemo3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutexDemo3.m; sourceTree = "<group>"; };
 		4B98CFFD278708CE002609F3 /* SemaphoreDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemaphoreDemo.m; sourceTree = "<group>"; };
@@ -175,6 +181,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B686EFC2793DC2200D878C8 /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				4B686F002793DC6400D878C8 /* Memory.h */,
+				4B686F012793DC6400D878C8 /* Memory.m */,
+				4B686F0427941F1F00D878C8 /* MemoryCopy.h */,
+				4B686F0527941F1F00D878C8 /* MemoryCopy.m */,
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
 		4B98CFFA278708CE002609F3 /* Locks */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +250,7 @@
 		4BB5173026C3707600EAA03A /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4B686EFC2793DC2200D878C8 /* Memory */,
 				4BEB82EB278C5380003EADA8 /* Thread */,
 				4BC37E9B273277B200C89439 /* SwiftFunction */,
 				4BB8FB1E26E5A898007707D9 /* RunLoop */,
@@ -587,6 +605,7 @@
 				4BC37EB727328B2C00C89439 /* BViewController.swift in Sources */,
 				4B98D01A278708CE002609F3 /* NSConditionDemo.m in Sources */,
 				4BB8FB4526E5CBC6007707D9 /* RunLoopTestViewController.m in Sources */,
+				4B686F022793DC6400D878C8 /* Memory.m in Sources */,
 				4B98D018278708CE002609F3 /* MutexDemo.m in Sources */,
 				4BF4386F26DDE24B00A8CA15 /* TimerProxy.m in Sources */,
 				4BB5173626C3707600EAA03A /* ViewController.swift in Sources */,
@@ -606,6 +625,7 @@
 				4BB8FB3426E5C114007707D9 /* RunLoopTest.m in Sources */,
 				4BBB26DC26E9A5A100B51B3F /* GCD.m in Sources */,
 				4BB5173226C3707600EAA03A /* AppDelegate.swift in Sources */,
+				4B686F0627941F1F00D878C8 /* MemoryCopy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

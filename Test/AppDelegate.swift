@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = UINavigationController.init(rootViewController: ViewController())
 
-        test()
+//        test()
         return true
     }
 

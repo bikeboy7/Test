@@ -15,3 +15,5 @@
 #import "GCD.h"
 #import "Thread.h"
 #import "OperationTest.h"
+#import "Memory.h"
+#import "MemoryCopy.h"
